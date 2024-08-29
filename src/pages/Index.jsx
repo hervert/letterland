@@ -29,7 +29,7 @@ const Index = () => {
       onClick={changeLetterAndColor}
     >
       <div className="text-center">
-        <h1 className="text-black text-[20vw] font-bold">{letter}</h1>
+        <h1 className="text-black text-[40vw] font-bold">{letter}</h1>
       </div>
     </div>
   );
