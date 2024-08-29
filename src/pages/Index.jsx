@@ -22,6 +22,11 @@ const Index = () => {
     return brightColors[Math.floor(Math.random() * brightColors.length)];
   };
 
+  // Explanation:
+  // 1. We define an array of bright Tailwind CSS background color classes.
+  // 2. We use Math.random() to generate a random index within the array length.
+  // 3. We return a randomly selected color class from the array.
+
   const changeCharAndColor = useCallback(() => {
     let newChar;
     switch (mode) {
