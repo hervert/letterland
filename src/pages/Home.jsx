@@ -8,30 +8,30 @@ const Home = () => {
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500">
       <h1 className="text-4xl font-bold text-white mb-8">Letterland Journey</h1>
-      <div className="space-y-4">
+      <div className="flex flex-col space-y-4 items-center">
         <Button 
-          className="w-64 text-lg"
+          className="w-64 h-64 text-2xl font-bold"
           onClick={() => navigate('/play/alphabetical')}
         >
-          Alphabetical Order
+          1. Alphabet
         </Button>
         <Button 
-          className="w-64 text-lg"
+          className="w-64 h-64 text-2xl font-bold"
           onClick={() => navigate('/play/random')}
         >
-          Random Letters
+          2. Random Letters
         </Button>
         <Button 
-          className="w-64 text-lg"
+          className="w-64 h-64 text-2xl font-bold"
           onClick={() => navigate('/play/digits')}
         >
-          Digits 0-9
+          3. Digits 0-9
         </Button>
         <Button 
-          className="w-64 text-lg"
+          className="w-64 h-64 text-2xl font-bold"
           onClick={() => navigate('/play/random-digits')}
         >
-          Random Digits
+          4. Random Digits
         </Button>
       </div>
     </div>
