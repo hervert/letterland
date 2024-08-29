@@ -1,11 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState, useEffect } from 'react';
 
 const Index = () => {
+  const [letter, setLetter] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('');
+
+  const generateRandomLetter = () => {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    return alphabet[Math.floor(Math.random() * alphabet.length)];
+  };
+
+  const generateRandomColor = () => {
+    const brightColors = ['bg-yellow-400', 'bg-green-400', 'bg-blue-400', 'bg-red-400', 'bg-purple-400', 'bg-pink-400'];
+    return brightColors[Math.floor(Math.random() * brightColors.length)];
+  };
+
+  const changeLetterAndColor = () => {
+    setLetter(generateRandomLetter());
+    setBackgroundColor(generateRandomColor());
+  };
+
+  useEffect(() => {
+    changeLetterAndColor();
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div 
+      className={`min-h-screen flex items-center justify-center ${backgroundColor} cursor-pointer`}
+      onClick={changeLetterAndColor}
+    >
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+        <h1 className="text-black text-[20vw] font-bold">{letter}</h1>
       </div>
     </div>
   );
