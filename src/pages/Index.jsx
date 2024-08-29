@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { getColorForChar } from '../utils/colorMappings';
 
 const Index = () => {
   const [history, setHistory] = useState([]);
@@ -17,17 +18,9 @@ const Index = () => {
     return set[Math.floor(Math.random() * set.length)];
   };
 
-  const generateRandomColor = () => {
-    const brightColors = ['bg-yellow-400', 'bg-green-400', 'bg-blue-400', 'bg-red-400', 'bg-purple-400', 'bg-pink-400'];
-    return brightColors[Math.floor(Math.random() * brightColors.length)];
-  };
+  // Color is now determined by the character, so we don't need the random color generation
 
-  // Explanation:
-  // 1. We define an array of bright Tailwind CSS background color classes.
-  // 2. We use Math.random() to generate a random index within the array length.
-  // 3. We return a randomly selected color class from the array.
-
-  const changeCharAndColor = useCallback(() => {
+  const changeChar = useCallback(() => {
     let newChar;
     switch (mode) {
       case 'alphabetical':
@@ -47,27 +40,29 @@ const Index = () => {
     }
     setHistory(prev => [...prev.slice(0, currentIndex + 1), newChar]);
     setCurrentIndex(prev => prev + 1);
-    setBackgroundColor(generateRandomColor());
+    setBackgroundColor(getColorForChar(newChar));
   }, [mode, currentIndex]);
 
   const goToPrevious = useCallback(() => {
     if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
-      setBackgroundColor(generateRandomColor());
+      const prevIndex = currentIndex - 1;
+      setCurrentIndex(prevIndex);
+      setBackgroundColor(getColorForChar(history[prevIndex]));
     }
-  }, [currentIndex]);
+  }, [currentIndex, history]);
 
   const goToNext = useCallback(() => {
     if (currentIndex < history.length - 1) {
-      setCurrentIndex(prev => prev + 1);
-      setBackgroundColor(generateRandomColor());
+      const nextIndex = currentIndex + 1;
+      setCurrentIndex(nextIndex);
+      setBackgroundColor(getColorForChar(history[nextIndex]));
     } else {
-      changeCharAndColor();
+      changeChar();
     }
-  }, [currentIndex, history.length, changeCharAndColor]);
+  }, [currentIndex, history.length, changeChar]);
 
   useEffect(() => {
-    changeCharAndColor();
+    changeChar();
   }, [mode]);
 
   useEffect(() => {
