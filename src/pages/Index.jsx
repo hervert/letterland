@@ -25,11 +25,11 @@ const Index = () => {
 
   return (
     <div 
-      className={`min-h-screen flex items-center justify-center ${backgroundColor} cursor-pointer`}
+      className={`h-screen flex items-center justify-center ${backgroundColor} cursor-pointer`}
       onClick={changeLetterAndColor}
     >
-      <div className="text-center">
-        <h1 className="text-black text-[40vw] font-bold">{letter}</h1>
+      <div className="h-[90%] flex items-center justify-center">
+        <h1 className="text-black text-[90%] font-bold leading-none">{letter}</h1>
       </div>
     </div>
   );
