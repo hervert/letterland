@@ -4,16 +4,17 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
 const Index = () => {
-  const [letterHistory, setLetterHistory] = useState([]);
+  const [history, setHistory] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [backgroundColor, setBackgroundColor] = useState('');
   const { mode } = useParams();
   const navigate = useNavigate();
 
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const digits = '0123456789';
 
-  const generateRandomLetter = () => {
-    return alphabet[Math.floor(Math.random() * alphabet.length)];
+  const generateRandom = (set) => {
+    return set[Math.floor(Math.random() * set.length)];
   };
 
   const generateRandomColor = () => {
@@ -21,44 +22,55 @@ const Index = () => {
     return brightColors[Math.floor(Math.random() * brightColors.length)];
   };
 
-  const changeLetterAndColor = useCallback(() => {
-    let newLetter;
-    if (mode === 'alphabetical') {
-      newLetter = alphabet[(currentIndex + 1) % alphabet.length];
-    } else {
-      newLetter = generateRandomLetter();
+  const changeCharAndColor = useCallback(() => {
+    let newChar;
+    switch (mode) {
+      case 'alphabetical':
+        newChar = alphabet[(currentIndex + 1) % alphabet.length];
+        break;
+      case 'random':
+        newChar = generateRandom(alphabet);
+        break;
+      case 'digits':
+        newChar = digits[(currentIndex + 1) % digits.length];
+        break;
+      case 'random-digits':
+        newChar = generateRandom(digits);
+        break;
+      default:
+        newChar = generateRandom(alphabet);
     }
-    setLetterHistory(prev => [...prev.slice(0, currentIndex + 1), newLetter]);
+    setHistory(prev => [...prev.slice(0, currentIndex + 1), newChar]);
     setCurrentIndex(prev => prev + 1);
     setBackgroundColor(generateRandomColor());
   }, [mode, currentIndex]);
 
-  const goToPreviousLetter = useCallback(() => {
+  const goToPrevious = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(prev => prev - 1);
       setBackgroundColor(generateRandomColor());
     }
   }, [currentIndex]);
 
-  const goToNextLetter = useCallback(() => {
-    if (currentIndex < letterHistory.length - 1) {
+  const goToNext = useCallback(() => {
+    if (currentIndex < history.length - 1) {
       setCurrentIndex(prev => prev + 1);
       setBackgroundColor(generateRandomColor());
     } else {
-      changeLetterAndColor();
+      changeCharAndColor();
     }
-  }, [currentIndex, letterHistory.length, changeLetterAndColor]);
+  }, [currentIndex, history.length, changeCharAndColor]);
 
   useEffect(() => {
-    changeLetterAndColor();
+    changeCharAndColor();
   }, [mode]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'ArrowLeft') {
-        goToPreviousLetter();
+        goToPrevious();
       } else if (event.key === 'ArrowRight') {
-        goToNextLetter();
+        goToNext();
       }
     };
 
@@ -67,7 +79,7 @@ const Index = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [goToPreviousLetter, goToNextLetter]);
+  }, [goToPrevious, goToNext]);
 
   return (
     <div 
@@ -80,9 +92,9 @@ const Index = () => {
       >
         <ArrowLeft className="mr-2 h-4 w-4" /> Back
       </Button>
-      <div className="flex-grow flex items-center justify-center cursor-pointer" onClick={goToNextLetter}>
+      <div className="flex-grow flex items-center justify-center cursor-pointer" onClick={goToNext}>
         <div className="h-[90%] flex items-center justify-center">
-          <h1 className="text-black text-[90vh] font-bold leading-none">{letterHistory[currentIndex]}</h1>
+          <h1 className="text-black text-[90vh] font-bold leading-none">{history[currentIndex]}</h1>
         </div>
       </div>
     </div>

@@ -19,7 +19,19 @@ const Home = () => {
           className="w-64 text-lg"
           onClick={() => navigate('/play/random')}
         >
-          Random Order
+          Random Letters
+        </Button>
+        <Button 
+          className="w-64 text-lg"
+          onClick={() => navigate('/play/digits')}
+        >
+          Digits 0-9
+        </Button>
+        <Button 
+          className="w-64 text-lg"
+          onClick={() => navigate('/play/random-digits')}
+        >
+          Random Digits
         </Button>
       </div>
     </div>
