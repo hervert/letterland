@@ -13,25 +13,25 @@ const Home = () => {
           className="w-full h-24 text-2xl font-bold"
           onClick={() => navigate('/play/alphabetical')}
         >
-          1. Alphabet
+          Alphabet
         </Button>
         <Button 
           className="w-full h-24 text-2xl font-bold"
           onClick={() => navigate('/play/random')}
         >
-          2. Random Letters
+          Random Letters
         </Button>
         <Button 
           className="w-full h-24 text-2xl font-bold"
           onClick={() => navigate('/play/digits')}
         >
-          3. Digits 0-9
+          Digits 0-9
         </Button>
         <Button 
           className="w-full h-24 text-2xl font-bold"
           onClick={() => navigate('/play/random-digits')}
         >
-          4. Random Digits
+          Random Digits
         </Button>
       </div>
     </div>
