@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500 p-4">
-      <h1 className="text-4xl font-bold text-white mb-8">Letterland Journey</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">LetterLand</h1>
       <div className="flex flex-col space-y-4 w-full max-w-md">
         <Button 
           className="w-full h-24 text-2xl font-bold"
