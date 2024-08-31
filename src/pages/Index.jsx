@@ -94,7 +94,7 @@ const Index = () => {
       </Button>
       <div className="flex-grow flex items-center justify-center cursor-pointer" onClick={goToNext}>
         <div className="h-[90%] flex items-center justify-center">
-          <h1 className="text-black text-[90vw] font-bold leading-none">{history[currentIndex]}</h1>
+          <h1 className="text-black text-[90vw] font-bold leading-none text-shadow-lg">{history[currentIndex]}</h1>
         </div>
       </div>
     </div>
