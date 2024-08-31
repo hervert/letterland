@@ -13,13 +13,13 @@ const Home = () => {
           className="w-full h-24 text-2xl font-bold"
           onClick={() => navigate('/play/alphabetical')}
         >
-          Alphabet
+          Alphabet (lower case)
         </Button>
         <Button 
           className="w-full h-24 text-2xl font-bold"
           onClick={() => navigate('/play/random')}
         >
-          Random Letters
+          Random Letters (lower case)
         </Button>
         <Button 
           className="w-full h-24 text-2xl font-bold"
